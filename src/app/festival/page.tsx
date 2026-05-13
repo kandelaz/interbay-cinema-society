@@ -47,7 +47,7 @@ export default async function FestivalPage() {
       <main className="flex-1">
 
         {/* ── Hero ── */}
-        <section className="relative grain overflow-hidden bg-[var(--background)] min-h-screen flex items-end">
+        <section className="relative grain overflow-hidden bg-[var(--background)] min-h-screen flex items-center">
           {current.posterImage ? (
             <div className="absolute inset-0">
               <Image
@@ -61,24 +61,30 @@ export default async function FestivalPage() {
             </div>
           ) : (
             <>
-              {/* Use most recent festival images as background */}
-              <div className="absolute inset-0 grid grid-cols-3 opacity-15">
-                {["/assets/festival-2025-still-1.jpg", "/assets/festival-2025-still-2.jpg", "/assets/festival-2025-still-3.jpg"].map((src, i) => (
-                  <div key={i} className="relative overflow-hidden">
-                    <Image src={src} alt="" fill sizes="33vw" className="object-cover" priority={i === 0} />
-                  </div>
-                ))}
+              <div
+                className="absolute"
+                style={{ inset: "-8px", filter: "blur(3px) brightness(0.75)" }}
+              >
+                <Image
+                  src="/assets/hero-festival.jpg"
+                  alt="Engauge Experimental Film Festival"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  priority
+                />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/70 to-[var(--background)]/30" />
+              <div className="absolute inset-0 bg-black/[0.275]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/60 to-transparent" />
             </>
           )}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-32 w-full">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
             <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-[var(--accent-dim)] mb-6">
               Annual Festival &nbsp;·&nbsp; {current.venue}
             </p>
             <h1 className="font-[family-name:var(--font-serif)] leading-none mb-6">
-              <span className="block text-[var(--accent-dim)] text-2xl sm:text-3xl font-normal tracking-widest uppercase mb-2">Engauge</span>
+              <span className="block text-[var(--foreground)] text-3xl sm:text-5xl font-semibold tracking-widest uppercase mb-1">Engauge Experimental Film Festival</span>
               <span className="block text-8xl sm:text-[10rem] font-semibold text-[var(--foreground)]">{current.year}</span>
             </h1>
             {current.dates && (
